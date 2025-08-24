@@ -177,3 +177,38 @@ body{
   padding-left:max(0px, env(safe-area-inset-left));
   padding-right:max(0px, env(safe-area-inset-right));
 }
+
+/* ===== Fix: no clipping on very small phones ===== */
+html, body { overflow-x: hidden; }              /* בלי גלילה רוחבית */
+*{ min-width: 0; }                               /* אל תכפה רוחב מינימלי */
+.badge, .btn, .trust-row span { max-width:100%; overflow-wrap:anywhere; }
+
+/* מרווח צד קטן יותר במסכים צרים מאוד */
+@media (max-width: 430px){
+  .container{ padding-inline:12px; }
+
+  /* כפתורים/פילים – שיהיו מעט צרים, בלי צל כבד, לא יחרגו */
+  .btn{ padding:12px 14px; border-radius:14px; box-shadow:none; }
+  .hero-cta, .cta-band, .nav-cta{ gap:8px; }
+  .cta-band{ flex-direction:column; align-items:stretch; border-radius:14px; }
+  .cta-band .btn, .hero-cta .btn{ width:100%; }
+
+  /* כרטיסים עגולים פחות – לא “נבלעים” בקצה המסך */
+  .card{ border-radius:14px; }
+}
+
+/* אולטרה-קטן (מכשירי 320–360px) */
+@media (max-width: 360px){
+  .container{ padding-inline:10px; }
+  .hero h1{ font-size:22px; }
+  .badges .badge{ padding:6px 10px; font-size:13px; }
+}
+
+/* safe-area לאייפונים עם נוץ' */
+body{
+  padding-left:max(0px, env(safe-area-inset-left));
+  padding-right:max(0px, env(safe-area-inset-right));
+}
+header{ padding-top:max(0px, env(safe-area-inset-top)); }
+.callbar{ padding-bottom:max(10px, env(safe-area-inset-bottom)); }
+
