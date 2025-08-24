@@ -1,7 +1,8 @@
-// שנה אוטומטית בפוטר
-document.getElementById('y').textContent = new Date().getFullYear();
+// שנה דינמית בפוטר
+const y = document.getElementById('y');
+if (y) y.textContent = new Date().getFullYear();
 
-// שליחת טופס → וואטסאפ
+// טופס -> הודעת וואטסאפ עם פרטים
 const form = document.getElementById('leadForm');
 if (form) {
   form.addEventListener('submit', function(e){
