@@ -27,10 +27,8 @@ header{
 }
 .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:12px}
-.logo{width:44px;height:44px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30,#1bd9b2,#14806d 60%,#0b4239);
-  box-shadow:0 8px 18px rgba(25,179,148,.45)
-}
+/* לוגו כ־IMG (בלי רקע דקורטיבי) */
+.logo{width:44px;height:auto;border-radius:8px;box-shadow:none}
 .brand-title{font-weight:800;letter-spacing:.5px}
 .nav-cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .btn{
@@ -128,49 +126,50 @@ footer{border-top:1px solid rgba(255,255,255,.08);padding:28px 0;color:var(--mut
 
 /* ====== מובייל ====== */
 @media (max-width:980px){
-  .hero-wrap{grid-template-columns:1fr;gap:18px}
+  .hero-wrap{grid-template-columns:1fr;gap:18px;padding:22px 0 10px}
   .grid-4{grid-template-columns:repeat(2,1fr)}
 }
 
 @media (max-width:680px){
   /* Header קליל יותר */
   header{position:static}
-  .nav{padding:10px 0}
-  .logo{width:42px;height:42px;border-radius:8px;box-shadow:none} /* לוגו מרובע נראה טוב יותר */
+  .nav{padding:10px 0;flex-wrap:wrap;gap:8px}
+  .brand-title{font-size:16px}
+  .logo{width:42px;height:auto;border-radius:8px;box-shadow:none}
   .nav-cta{width:100%}
-  .nav-cta .btn{flex:1;min-width:calc(50% - 6px)}
+  .nav-cta .btn{flex:1;min-width:calc(50% - 6px);min-height:46px}
   .nav-cta .btn-outline{display:none} /* משאיר רק טלפון/וואטסאפ בחלק העליון */
 
   /* Hero */
   .hero-wrap{padding:18px 0 10px}
-  .hero h1{font-size:26px}
+  .hero h1{font-size:26px;line-height:1.18;margin-bottom:8px}
   .hero p.lead{font-size:15.5px}
   .hero-card{padding:14px}
-  .badges .badge{padding:6px 10px}
+  .badges .badge{padding:6px 10px;font-size:13.5px;line-height:1}
 
   /* גרידים לעמודה אחת */
   .grid-3,.grid-4{grid-template-columns:1fr}
 
   /* טפסים – גדולים לאצבע */
-  input,select,textarea,button{
-    font-size:16px; /* מונע זום אוטומטי באייפון */
+  input,select,textarea,button{font-size:16px} /* מונע זום באייפון */
+  input,select,textarea{
+    padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.04);color:var(--txt)
   }
-  input,select,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:var(--txt)}
   label{display:block;margin:8px 0}
 
-  /* כפתורים – מלא רוחב */
-  .hero-cta .btn,
-  .cta-band .btn,
-  .callbar .btn{min-width:unset;width:100%}
+  /* כפתורים – רוחב מלא */
+  .hero-cta .btn, .cta-band .btn, .callbar .btn{min-width:unset;width:100%}
 
   /* מפה נמוכה יותר */
-  .map{height:260px}
+  .map{height:260px;border-radius:14px}
 
   /* פס פעולה תחתון */
   .callbar{display:flex}
 
   /* מרווחים */
   section{padding:26px 0}
+  footer{padding:20px 0;text-align:center}
 }
 
 /* אולטרה-קטן */
