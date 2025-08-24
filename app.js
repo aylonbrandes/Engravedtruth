@@ -2,7 +2,7 @@
 const y = document.getElementById('y');
 if (y) y.textContent = new Date().getFullYear();
 
-// שליחת הטופס -> וואטסאפ עם פרטי הליד
+// טופס -> הודעת וואטסאפ עם הפרטים
 const form = document.getElementById('leadForm');
 if (form) {
   form.addEventListener('submit', function(e){
