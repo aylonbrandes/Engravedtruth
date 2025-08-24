@@ -1,195 +1,116 @@
 :root{
   --bg:#0e1b2a; --bg-2:#0b1521; --txt:#f7fbff; --muted:#b7c6d8;
-  --primary:#19b394; --primary-2:#19a3ff; --accent:#ffd166; --danger:#ff3b3b;
-  --shadow:0 20px 45px rgba(0,0,0,.35);
-  --radius-2xl:22px; --radius-xl:16px; --radius-lg:12px; --radius-md:10px;
+  --primary:#19b394; --accent:#ffd166;
+  --shadow:0 18px 40px rgba(0,0,0,.35);
+  --r2:22px; --r1:16px; --r:12px;
   --container:1180px;
 }
 
-/* בסיס */
-*{box-sizing:border-box}
+/* === בסיס: מובייל תחילה === */
+*{box-sizing:border-box; min-width:0}
 html,body{
-  margin:0;padding:0;overflow-x:hidden; /* אין גלילה אופקית */
+  margin:0; padding:0;
   background:linear-gradient(180deg,var(--bg),var(--bg-2));
-  color:var(--txt);
-  font-family:'Assistant',system-ui,Segoe UI,Arial,Helvetica,sans-serif;
-  -webkit-text-size-adjust:100%;
+  color:var(--txt); font-family:'Assistant',system-ui,Segoe UI,Arial,Helvetica,sans-serif;
+  -webkit-text-size-adjust:100%; overflow-x:hidden;
 }
-a{color:inherit;text-decoration:none}
-img,iframe,svg{max-width:100%;height:auto;display:block}
-.container{max-width:var(--container);margin:0 auto;padding:0 18px}
+img,iframe,svg{max-width:100%; height:auto; display:block}
+a{color:inherit; text-decoration:none}
+.small{font-size:13px}
+.mt0{margin-top:0}
+
+.container{width:100%; max-width:var(--container); margin:0 auto; padding:0 14px}
+
+/* מרווח תחתון כדי שהפס הדביק לא יסתיר תוכן */
+@media (max-width:980px){
+  main{padding-bottom:90px}
+}
 
 /* Header */
 header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(11,21,33,.7);backdrop-filter:blur(10px);
+  position:sticky; top:0; z-index:50;
+  background:rgba(11,21,33,.7); backdrop-filter:blur(10px);
   border-bottom:1px solid rgba(255,255,255,.08);
   padding-top:max(0px, env(safe-area-inset-top));
 }
-.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;min-width:0}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:44px;height:auto;border-radius:8px;box-shadow:none}
-.brand-title{font-weight:800;letter-spacing:.5px}
-.nav-cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;min-width:0}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:12px 18px;border-radius:999px;border:1px solid transparent;
-  font-weight:700;cursor:pointer;transition:.25s transform,.25s opacity,.25s box-shadow;
-  min-width:0;overflow-wrap:anywhere;
-}
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:translateY(0)}
-.btn-primary{background:linear-gradient(90deg,var(--primary),#2fe2c0);color:#001b16;box-shadow:0 8px 26px rgba(25,179,148,.45)}
-.btn-outline{background:transparent;border-color:rgba(255,255,255,.2);color:var(--txt)}
-.wa{background:linear-gradient(90deg,#25D366,#128C7E);box-shadow:0 8px 24px rgba(18,140,126,.45)}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 0}
+.brand{display:flex; align-items:center; gap:10px}
+.logo{width:40px; height:auto; border-radius:8px}
+.brand-title{font-weight:800; letter-spacing:.4px}
+.nav-cta{display:none} /* מוסתר במובייל */
 
 /* Hero */
-.hero{position:relative;overflow:hidden}
-.hero-wrap{
-  display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;
-  padding:38px 0 22px;min-width:0
-}
-.hero h1{font-size:clamp(26px,3.6vw,48px);margin:0 0 12px;line-height:1.15;overflow-wrap:anywhere}
-.hero h1 .em{background:linear-gradient(90deg,#ffffff,#9fd5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.lead{font-size:clamp(16px,1.8vw,20px);color:var(--muted);margin:0 0 14px;overflow-wrap:anywhere}
-.badges{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 18px;min-width:0}
-.badge{padding:8px 12px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#dce9f5;background:rgba(255,255,255,.05);white-space:normal}
-.hero-card{
-  background:
-    radial-gradient(1200px 500px at 20% -30%, rgba(25,163,255,.18), transparent),
-    radial-gradient(800px 400px at 120% 20%, rgba(25,179,148,.18), transparent),
-    rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-2xl);
-  padding:22px;box-shadow:var(--shadow)
-}
-.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;min-width:0}
-.trust-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;font-weight:600;color:#d7f9f2;min-width:0}
-.trust-row span{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;background:rgba(25,179,148,.14);border:1px solid rgba(25,179,148,.28)}
+.hero{position:relative}
+.hero-wrap{display:flex; flex-direction:column; gap:16px; padding:18px 0 10px}
+.hero h1{font-size:24px; line-height:1.2; margin:0 0 6px}
+.hero .em{background:linear-gradient(90deg,#fff,#9fd5ff); -webkit-background-clip:text; background-clip:text; color:transparent}
+.lead{font-size:15.5px; color:var(--muted)}
+.badges{display:flex; flex-direction:column; gap:8px; margin:10px 0}
+.badge{padding:8px 10px; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.05); color:#e8f3ff}
+.hero-card{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:var(--r2); padding:14px; box-shadow:var(--shadow)}
+.hero-cta{display:none} /* מוסתר במובייל */
+.trust-row{display:flex; flex-direction:column; gap:8px; font-weight:600; color:#d7f9f2}
 
-/* Sections */
-section{padding:40px 0}
-h2{font-size:clamp(22px,2.6vw,32px);margin:0 0 18px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;min-width:0}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;min-width:0}
-.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-xl);padding:18px;box-shadow:var(--shadow)}
-.card h3{margin:0 0 8px}
+.icon{width:24px}
+
+/* כרטיסים/גרידים */
+section{padding:26px 0}
+h2{font-size:22px; margin:0 0 14px}
+.grid-3, .grid-4{display:grid; grid-template-columns:1fr; gap:12px}
+.grid-2{display:grid; grid-template-columns:1fr; gap:12px}
+.card{background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:var(--r1); padding:14px; box-shadow:var(--shadow)}
+.card.soft{background:rgba(255,255,255,.02)}
+.row{display:flex; gap:10px; align-items:flex-start}
 .muted{color:var(--muted)}
+.accent{color:var(--accent); font-weight:800}
 
-/* Icons */
-.icon{width:26px;height:26px;flex:0 0 26px}
-.row{display:flex;gap:12px;align-items:flex-start;min-width:0}
+/* רשימה */
+.checklist{margin:0; padding-inline-start:18px; line-height:1.8}
 
-/* CTA band - לא בשימוש (נשאר אם תרצה להחזיר בעתיד) */
-.cta-band{
-  background:linear-gradient(90deg, rgba(25,179,148,.15), rgba(25,163,255,.12));
-  border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-2xl);
-  padding:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;min-width:0
+/* כפתורים */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:12px 14px; border-radius:14px; border:1px solid transparent;
+  font-weight:800; cursor:pointer; transition:.2s transform,.2s box-shadow;
 }
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(90deg,var(--primary),#2fe2c0); color:#001b16; box-shadow:0 8px 22px rgba(25,179,148,.45)}
+.btn-outline{background:transparent; border-color:rgba(255,255,255,.25); color:var(--txt)}
+.wa{background:linear-gradient(90deg,#25D366,#128C7E); color:#062a1f; box-shadow:0 8px 22px rgba(18,140,126,.45)}
 
 /* Map */
-.map{
-  border:0;width:100%;height:360px;border-radius:var(--radius-xl);
-  filter:saturate(1.1) contrast(1.05) drop-shadow(0 10px 24px rgba(0,0,0,.35))
-}
+.map{border:0; width:100%; height:240px; border-radius:16px; filter:saturate(1.05) contrast(1.03) drop-shadow(0 10px 22px rgba(0,0,0,.35))}
 
-/* Floating WhatsApp */
-.fab{position:fixed;left:18px;bottom:18px;z-index:60}
-.fab a{
-  display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#052015;
-  padding:12px 16px;border-radius:999px;box-shadow:0 10px 24px rgba(37,211,102,.45);
-  font-weight:800;border:1px solid rgba(0,0,0,.1)
-}
+/* FAQ */
+details{background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:var(--r); padding:12px}
+details+details{margin-top:10px}
+summary{cursor:pointer; font-weight:700}
+summary::-webkit-details-marker{display:none}
 
-/* Sticky mobile call bar */
+/* Footer */
+.footer-wrap{display:flex; flex-direction:column; gap:8px; padding:18px 0; border-top:1px solid rgba(255,255,255,.08)}
+footer a{text-decoration:underline}
+
+/* פס פעולה תחתון במובייל */
 .callbar{
-  position:fixed;bottom:0;right:0;left:0;background:rgba(11,21,33,.9);
-  backdrop-filter:blur(8px);display:none;gap:10px;padding:10px;border-top:1px solid rgba(255,255,255,.1);z-index:55;
+  position:fixed; right:0; left:0; bottom:0; z-index:55;
+  display:flex; gap:10px; padding:10px 12px; background:rgba(11,21,33,.92); backdrop-filter:blur(8px);
+  border-top:1px solid rgba(255,255,255,.1);
   padding-bottom:max(10px, env(safe-area-inset-bottom));
 }
 .callbar .btn{flex:1}
 
-/* FAQ */
-details{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-lg);padding:14px}
-details+details{margin-top:10px}
-summary{cursor:pointer;font-weight:700}
-summary::-webkit-details-marker{display:none}
-
-/* Footer */
-footer{border-top:1px solid rgba(255,255,255,.08);padding:28px 0;color:var(--muted)}
-
-/* ====== מובייל ====== */
-@media (max-width:980px){
-  .hero-wrap{grid-template-columns:1fr;gap:18px;padding:22px 0 10px}
-  .grid-4{grid-template-columns:repeat(2,1fr)}
-}
-
-@media (max-width:680px){
-  /* Header – הסתרת CTA במובייל */
-  .nav{padding:10px 0;flex-wrap:wrap;gap:8px}
-  .brand-title{font-size:16px}
-  .logo{width:42px}
-  .nav-cta{display:none} /* << מוסתר במובייל */
-
-  /* Hero */
-  .hero-wrap{padding:18px 0 10px}
-  .hero h1{font-size:24px;line-height:1.18;margin-bottom:8px}
-  .hero p.lead{font-size:15.5px}
-  .hero-card{padding:14px}
-  .badges .badge{padding:6px 10px;font-size:13.5px;line-height:1}
-  .hero-cta{display:none} /* << כפתורי ה־Hero מוסתרים במובייל */
-
-  /* גרידים לעמודה אחת */
-  .grid-3,.grid-4{grid-template-columns:1fr}
-
-  /* טפסים – נוחות לאגודל */
-  input,select,textarea,button{font-size:16px}
-  input,select,textarea{
-    padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.04);color:var(--txt)
-  }
-  label{display:block;margin:8px 0}
-
-  /* מפה נמוכה יותר */
-  .map{height:240px;border-radius:14px}
-
-  /* פס פעולה תחתון */
-  .callbar{display:flex}
-
-  /* מרווחים */
-  section{padding:26px 0}
-  footer{padding:20px 0;text-align:center}
-}
-
-/* אולטרה-קטן */
-@media (max-width:380px){
-  .hero h1{font-size:22px}
-}
-
-/* safe areas צדדיים */
-body{
-  padding-left:max(0px, env(safe-area-inset-left));
-  padding-right:max(0px, env(safe-area-inset-right));
-}
-
-/* ===== At-home minimal – במובייל ערימה אנכית ===== */
-@media (max-width:680px){
-  #athome .card[style*="grid-template-columns"]{ grid-template-columns:1fr; }
-}
-
-/* ===== Contact section responsive fix ===== */
-@media (max-width: 680px){
-  #contact .card[style*="grid-template-columns"] {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  #contact .card > div:nth-child(1){ order:1; }
-  #contact form{ order:2; width:100%; padding:16px; border-radius:12px; }
-}
-
-/* נגד חיתוכים בכפתורים/באדג'ים במסכים צרים מאוד */
-@media (max-width:430px){
-  .container{ padding-inline:12px; }
-  .btn{ padding:12px 14px; border-radius:14px; box-shadow:none; }
-  .cta-band{ flex-direction:column; align-items:stretch; border-radius:14px; }
-  .card{ border-radius:14px; }
+/* === דסקטופ / טאבלט רחב === */
+@media (min-width: 981px){
+  .container{padding:0 18px}
+  .nav-cta{display:flex}
+  .hero-wrap{display:grid; grid-template-columns:1.05fr .95fr; gap:28px; padding:38px 0 22px}
+  .hero h1{font-size:42px}
+  .lead{font-size:18px}
+  .badges{flex-direction:row; flex-wrap:wrap}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+  .grid-2{grid-template-columns:1fr 1fr}
+  .map{height:360px}
+  .footer-wrap{flex-direction:row; justify-content:space-between}
 }
